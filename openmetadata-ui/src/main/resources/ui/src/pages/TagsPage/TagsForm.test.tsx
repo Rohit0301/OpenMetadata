@@ -17,12 +17,6 @@ import { DEFAULT_FORM_VALUE } from '../../constants/Tags.constant';
 import TagsForm from './TagsForm';
 import { SubmitProps } from './TagsPage.interface';
 
-jest.mock('../../components/common/RichTextEditor/RichTextEditor', () => {
-  return jest.fn().mockImplementation(({ initialValue }) => {
-    return <div>{initialValue}MarkdownWithPreview component</div>;
-  });
-});
-
 jest.mock('../../utils/CommonUtils', () => ({
   isUrlFriendlyName: jest.fn().mockReturnValue(true),
   getCountBadge: jest.fn().mockReturnValue(''),
@@ -91,12 +85,11 @@ describe('TagForm component', () => {
 
     const form = await screen.findByTestId('tags-form');
     const name = await screen.findByTestId('name');
+    const description = await screen.findByTestId('description');
 
     expect(form).toBeInTheDocument();
     expect(name).toBeInTheDocument();
-    expect(
-      await screen.findByText(/MarkdownWithPreview component/i)
-    ).toBeInTheDocument();
+    expect(description).toBeInTheDocument();
   });
 
   it('Form component should render name and displayName fields', async () => {

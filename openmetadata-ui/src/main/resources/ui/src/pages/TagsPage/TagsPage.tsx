@@ -676,6 +676,12 @@ const TagsPage = () => {
                   startIcon={<PlusIcon style={{ height: 16, width: 16 }} />}
                   sx={{
                     fontWeight: theme.typography.body2.fontWeight,
+                    border: `1px solid ${theme.palette.grey[300]}`,
+                    boxShadow: 'none',
+                    '&:hover': {
+                      border: `1px solid ${theme.palette.primary.main}`,
+                      boxShadow: 'none',
+                    },
                   }}
                   variant="outlined"
                   onClick={() => {

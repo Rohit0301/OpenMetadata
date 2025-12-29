@@ -288,9 +288,7 @@ describe('tagFormFields', () => {
 
   describe('getDescriptionField', () => {
     it('should return description field configuration with default values', () => {
-      const initialValue = 'Test description';
       const result = getDescriptionField({
-        initialValue,
         readonly: false,
       });
 
@@ -299,45 +297,49 @@ describe('tagFormFields', () => {
         required: true,
         label: 'label.description',
         id: 'root/description',
-        type: FieldTypes.DESCRIPTION,
+        type: FieldTypes.TEXT_MUI,
+        placeholder: 'label.description',
         props: {
-          'data-testid': 'description',
-          initialValue,
-          readonly: false,
-          className: 'description-text-area',
-        },
-        formItemProps: {
-          className: 'description-form-item',
+          inputProps: {
+            'data-testid': 'description',
+          },
+          disabled: false,
+          multiline: true,
+          rows: 4,
         },
       });
     });
 
     it('should return description field configuration with readonly true', () => {
       const result = getDescriptionField({
-        initialValue: '',
         readonly: true,
       });
 
-      expect(result.props?.readonly).toBe(true);
+      expect(result.props?.disabled).toBe(true);
     });
 
     it('should be a required field', () => {
       const result = getDescriptionField({
-        initialValue: '',
         readonly: false,
       });
 
       expect(result.required).toBe(true);
     });
 
-    it('should preserve initialValue', () => {
-      const initialValue = 'Custom initial value';
+    it('should have multiline set to true', () => {
       const result = getDescriptionField({
-        initialValue,
         readonly: false,
       });
 
-      expect(result.props?.initialValue).toBe(initialValue);
+      expect(result.props?.multiline).toBe(true);
+    });
+
+    it('should have rows set to 4', () => {
+      const result = getDescriptionField({
+        readonly: false,
+      });
+
+      expect(result.props?.rows).toBe(4);
     });
   });
 

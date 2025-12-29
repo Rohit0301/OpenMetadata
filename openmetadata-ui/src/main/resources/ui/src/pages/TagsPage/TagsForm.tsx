@@ -190,7 +190,6 @@ const TagsForm = ({
 
   const formFields: FieldProp[] = useMemo(() => {
     const descriptionField = getDescriptionField({
-      initialValue: initialValues?.description ?? '',
       readonly: disableDescriptionField,
     });
 
@@ -198,6 +197,7 @@ const TagsForm = ({
       {
         ...descriptionField,
         label: t(descriptionField.label),
+        placeholder: t(descriptionField.placeholder),
       },
     ];
 
@@ -216,7 +216,6 @@ const TagsForm = ({
     return fields;
   }, [
     t,
-    initialValues?.description,
     initialValues?.disabled,
     disableDescriptionField,
     disableDisabledField,

@@ -135,25 +135,23 @@ export const getDomainField = ({
 });
 
 export const getDescriptionField = ({
-  initialValue,
   readonly,
 }: {
-  initialValue: string;
   readonly: boolean;
 }): FieldProp => ({
   name: 'description',
   required: true,
   label: 'label.description',
   id: 'root/description',
-  type: FieldTypes.DESCRIPTION,
+  type: FieldTypes.TEXT_MUI,
+  placeholder: 'label.description',
   props: {
-    'data-testid': 'description',
-    initialValue,
-    readonly,
-    className: 'description-text-area',
-  },
-  formItemProps: {
-    className: 'description-form-item',
+    inputProps: {
+      'data-testid': 'description',
+    },
+    disabled: readonly,
+    multiline: true,
+    rows: 4,
   },
 });
 
